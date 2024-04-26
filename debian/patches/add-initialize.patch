@@ -1,0 +1,22 @@
+see https://github.com/ros2/rosbag2/pull/1546
+
+diff --git a/include/rosbag2_compression/compression_options.hpp b/include/rosbag2_compression/compression_options.hpp
+index 37fe5007e..68f59416f 100644
+--- a/include/rosbag2_compression/compression_options.hpp
++++ b/include/rosbag2_compression/compression_options.hpp
+@@ -56,10 +56,11 @@ ROSBAG2_COMPRESSION_PUBLIC std::string compression_mode_to_string(CompressionMod
+  */
+ struct CompressionOptions
+ {
+-  std::string compression_format;
+-  CompressionMode compression_mode;
+-  uint64_t compression_queue_size;
+-  uint64_t compression_threads;
++  std::string compression_format{};
++  CompressionMode compression_mode{CompressionMode::NONE};
++  uint64_t compression_queue_size{0};
++  /// \brief // The number of compression threads
++  uint64_t compression_threads{0};
+ };
+ 
+ }  // namespace rosbag2_compression
