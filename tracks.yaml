@@ -138,7 +138,7 @@ tracks:
     name: rosbag2
     patches: null
     release_inc: '1'
-    release_repo_url: https://github.com/ros2-gbp/rosbag2-release.git
+    release_repo_url: git@github.com:revyos-ros/rosbag2-release.git
     release_tag: :{version}
     ros_distro: humble
     vcs_type: git
