@@ -1,4 +1,4 @@
-release_repo_url: git@github.com:ros2-gbp/rosbag2-release
+release_repo_url: git@github.com:revyos-ros/rosbag2-release.git
 tracks:
   crystal:
     actions:
