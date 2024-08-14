@@ -1,4 +1,4 @@
-From b5ee174d9769cbdd466b6ef8105b7f80cfd38614 Mon Sep 17 00:00:00 2001
+From db8d760a9e88e0c5d21c6aee34360bfb10b066dd Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Thu, 30 May 2024 00:19:18 +0800
 Subject: [PATCH] Disable FETCHCONTENT_FULLY_DISCONNECTED to get online source
@@ -21,5 +21,5 @@ index a856369d1..382e29c69 100755
  
  override_dh_auto_build:
 -- 
-2.41.0
+2.45.2
 
