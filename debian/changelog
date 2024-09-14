@@ -1,0 +1,138 @@
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.5.0-1bookworm) bookworm; urgency=high
+
+  * Sqlite storage double buffering (#546 <https://github.com/ros2/rosbag2/issues/546>)
+  * Contributors: Adam Dąbrowski
+
+ -- Karsten Knese <karsten@openrobotics.org>  Tue, 01 Dec 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.4.0-1bookworm) bookworm; urgency=high
+
+  * read yaml config file (#497 <https://github.com/ros2/rosbag2/issues/497>)
+  * add storage_config_uri (#493 <https://github.com/ros2/rosbag2/issues/493>)
+  * Update the package.xml files with the latest Open Robotics maintainers (#535 <https://github.com/ros2/rosbag2/issues/535>)
+  * performance testing packages (#442 <https://github.com/ros2/rosbag2/issues/442>)
+  * Contributors: Adam Dąbrowski, Karsten Knese, Michael Jeronimo
+
+ -- Karsten Knese <karsten@openrobotics.org>  Wed, 18 Nov 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.3.2-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Tue, 02 Jun 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.3.1-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Sun, 31 May 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.3.0-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Mon, 25 May 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.8-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Sun, 17 May 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.7-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Mon, 11 May 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.6-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Wed, 06 May 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.5-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Wed, 29 Apr 2020 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.4-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Mon, 18 Nov 2019 09:51:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.3-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Mon, 18 Nov 2019 05:55:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.2-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Tue, 12 Nov 2019 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.1-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Tue, 22 Oct 2019 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.2.0-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Wed, 25 Sep 2019 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.1.2-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Sun, 19 May 2019 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.1.1-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Wed, 08 May 2019 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.1.0-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Tue, 07 May 2019 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.0.5-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Wed, 26 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.0.4-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Tue, 18 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.0.3-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Thu, 13 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.0.2-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Tue, 11 Dec 2018 16:00:00 -0000
+
+ros-jazzy-rosbag2-performance-writer-benchmarking (0.0.1-1bookworm) bookworm; urgency=high
+
+
+
+ -- Karsten Knese <karsten@openrobotics.org>  Mon, 10 Dec 2018 16:00:00 -0000
+
+
