@@ -112,7 +112,7 @@ TEST_F(RecordIntegrationTestFixture, record_all_with_sim_time)
   MockSequentialWriter & mock_writer =
     static_cast<MockSequentialWriter &>(writer.get_implementation_handle());
 
-  size_t expected_messages = 10;
+  constexpr size_t expected_messages = 10;
   auto ret = rosbag2_test_common::wait_until_shutdown(
     std::chrono::seconds(5),
     [&mock_writer, &expected_messages]() {
@@ -137,17 +137,17 @@ TEST_F(RecordIntegrationTestFixture, record_all_with_sim_time)
   // check that the timestamp is same as the clock message
   EXPECT_THAT(string_messages[0]->recv_timestamp, time_value);
 
-  bool rwm_has_timestamp_support = true;
+  bool rmw_has_timestamp_support = true;
 
 #ifdef _WIN32
   if (std::string(rmw_get_implementation_identifier()).find("rmw_connextdds") !=
     std::string::npos)
   {
-    rwm_has_timestamp_support = false;
+    rmw_has_timestamp_support = false;
   }
 #endif
 
-  if (rwm_has_timestamp_support) {
+  if (rmw_has_timestamp_support) {
     // Check that the send_timestamp is not the same as the clock message
     EXPECT_NE(string_messages[0]->send_timestamp, time_value);
     EXPECT_NE(string_messages[0]->send_timestamp, 0);
