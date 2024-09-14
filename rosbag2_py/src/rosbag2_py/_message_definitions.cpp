@@ -1,4 +1,4 @@
-// Copyright 2020 Open Source Robotics Foundation, Inc.
+// Copyright 2024 Intrinsic Innovation LLC. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,21 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef ROSBAG2_PY__PYBIND11_HPP_
-#define ROSBAG2_PY__PYBIND11_HPP_
+#include "rosbag2_cpp/message_definitions/local_message_definition_source.hpp"
 
-// Ignore -Wunused-value for clang.
-// Based on https://github.com/pybind/pybind11/issues/2225
-#if defined(__clang__)
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-value"
-#endif
-#include <pybind11/pybind11.h>
-#if defined(__clang__)
-#pragma clang diagnostic pop
-#endif
-#include <pybind11/stl.h>
-#include <pybind11/chrono.h>
-#include <pybind11/embed.h>
+#include "./pybind11.hpp"
 
-#endif  // ROSBAG2_PY__PYBIND11_HPP_
+PYBIND11_MODULE(_message_definitions, m) {
+  m.doc() = "Python wrapper of the rosbag2_cpp message definitions API";
+
+  pybind11::class_<rosbag2_cpp::LocalMessageDefinitionSource>(
+    m, "LocalMessageDefinitionSource")
+  .def(pybind11::init<>())
+  .def(
+    "get_full_text", &rosbag2_cpp::LocalMessageDefinitionSource::get_full_text);
+}
