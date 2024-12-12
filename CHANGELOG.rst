@@ -2,6 +2,30 @@
 Changelog for package rosbag2_compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.15.13 (2024-11-25)
+--------------------
+* [humble] Make snapshot writing into a new file each time it is triggered (backport `#1842 <https://github.com/ros2/rosbag2/issues/1842>`_) (`#1850 <https://github.com/ros2/rosbag2/issues/1850>`_)
+* Prevent using message compression mode with mcap storage (`#1782 <https://github.com/ros2/rosbag2/issues/1782>`_)
+* Contributors: Roman Shtylman, mergify[bot]
+
+0.15.12 (2024-07-28)
+--------------------
+* [humble] Bugfix for bag_split event callbacks called to early with file compression (backport `#1643 <https://github.com/ros2/rosbag2/issues/1643>`_) (`#1733 <https://github.com/ros2/rosbag2/issues/1733>`_)
+* [humble] Add option to prevent message loss while converting (backport `#1058 <https://github.com/ros2/rosbag2/issues/1058>`_) (`#1749 <https://github.com/ros2/rosbag2/issues/1749>`_)
+* Contributors: mergify[bot]
+
+0.15.11 (2024-05-20)
+--------------------
+* [humble] Rollback to rcpputils::fs and workaround failure in "open_succeds_twice" on second run. (`#1666 <https://github.com/ros2/rosbag2/issues/1666>`_)
+* Add in a missing cstdint include. (`#1321 <https://github.com/ros2/rosbag2/issues/1321>`_) (`#1663 <https://github.com/ros2/rosbag2/issues/1663>`_)
+* Contributors: Michael Orlov, mergify[bot]
+
+0.15.10 (2024-05-17)
+--------------------
+* [humble] Bugfix for writer not being able to open again after closing (backport `#1599 <https://github.com/ros2/rosbag2/issues/1599>`_) (`#1653 <https://github.com/ros2/rosbag2/issues/1653>`_)
+* [humble] Add default initialization for CompressionOptions (backport `#1539 <https://github.com/ros2/rosbag2/issues/1539>`_) (`#1546 <https://github.com/ros2/rosbag2/issues/1546>`_)
+* Contributors: mergify[bot]
+
 0.15.9 (2024-01-24)
 -------------------
 
