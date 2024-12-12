@@ -2,6 +2,20 @@
 Changelog for package rosbag2_test_common
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.15.13 (2024-11-25)
+--------------------
+
+0.15.12 (2024-07-28)
+--------------------
+* [humble] rosbag2_cpp: test more than one storage plugin (backport `#1196 <https://github.com/ros2/rosbag2/issues/1196>`_) (`#1721 <https://github.com/ros2/rosbag2/issues/1721>`_)
+* Contributors: mergify[bot]
+
+0.15.11 (2024-05-20)
+--------------------
+
+0.15.10 (2024-05-17)
+--------------------
+
 0.15.9 (2024-01-24)
 -------------------
 
