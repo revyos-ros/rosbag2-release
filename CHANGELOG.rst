@@ -2,6 +2,26 @@
 Changelog for package rosbag2_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.15.13 (2024-11-25)
+--------------------
+* [humble] Allow unknown types in bag rewrite (backport `#1812 <https://github.com/ros2/rosbag2/issues/1812>`_) (`#1819 <https://github.com/ros2/rosbag2/issues/1819>`_)
+* Contributors: mergify[bot]
+
+0.15.12 (2024-07-28)
+--------------------
+* [humble] Bugfix for bag_split event callbacks called to early with file compression (backport `#1643 <https://github.com/ros2/rosbag2/issues/1643>`_) (`#1733 <https://github.com/ros2/rosbag2/issues/1733>`_)
+* [humble] rosbag2_cpp: test more than one storage plugin (backport `#1196 <https://github.com/ros2/rosbag2/issues/1196>`_) (`#1721 <https://github.com/ros2/rosbag2/issues/1721>`_)
+* [humble] Remove explicit sqlite3 from code (backport `#1166 <https://github.com/ros2/rosbag2/issues/1166>`_) (`#1723 <https://github.com/ros2/rosbag2/issues/1723>`_)
+* Contributors: mergify[bot]
+
+0.15.11 (2024-05-20)
+--------------------
+
+0.15.10 (2024-05-17)
+--------------------
+* Add /bigobj to MSVC compiles. (`#1571 <https://github.com/ros2/rosbag2/issues/1571>`_)
+* Contributors: Chris Lalancette
+
 0.15.9 (2024-01-24)
 -------------------
 * [humble] Give proper log message for `--start-paused` (backport `#1537 <https://github.com/ros2/rosbag2/issues/1537>`_) (`#1541 <https://github.com/ros2/rosbag2/issues/1541>`_)
