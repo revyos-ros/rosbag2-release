@@ -1,4 +1,4 @@
-From e05be34677ce6c12650b29a24112907adde48be3 Mon Sep 17 00:00:00 2001
+From 252a0c1a7a91a1eb6cdd60d5daa3f3c34080c9a1 Mon Sep 17 00:00:00 2001
 From: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 Date: Thu, 30 May 2024 14:35:01 +0800
 Subject: [PATCH 2/2] delete patch.
@@ -67,5 +67,5 @@ index cc4c858f7..000000000
 -add-initialize.patch
 -add-missing-header.patch
 -- 
-2.45.2
+2.46.0
 

@@ -1,4 +1,4 @@
-From aba662be36214006e6c16cb091412519ef4bdfc4 Mon Sep 17 00:00:00 2001
+From b6b249a59dda26fe2ed06642d5c7c44389666465 Mon Sep 17 00:00:00 2001
 From: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 Date: Fri, 26 Apr 2024 14:26:41 +0800
 Subject: [PATCH 1/2] add some pathc to fix build.
@@ -67,5 +67,5 @@ index 000000000..cc4c858f7
 +add-initialize.patch
 +add-missing-header.patch
 -- 
-2.45.2
+2.46.0
 
