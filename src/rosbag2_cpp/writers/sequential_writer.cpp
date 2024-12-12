@@ -61,7 +61,13 @@ SequentialWriter::SequentialWriter(
 
 SequentialWriter::~SequentialWriter()
 {
-  close();
+  // Deleting all callbacks before calling close(). Calling callbacks from destructor is not safe.
+  // Callbacks likely was created after SequentialWriter object and may point to the already
+  // destructed objects.
+  callback_manager_.delete_all_callbacks();
+  if (storage_) {
+    SequentialWriter::close();
+  }
 }
 
 void SequentialWriter::init_metadata()
@@ -70,11 +76,13 @@ void SequentialWriter::init_metadata()
   metadata_.storage_identifier = storage_->get_storage_identifier();
   metadata_.starting_time = std::chrono::time_point<std::chrono::high_resolution_clock>(
     std::chrono::nanoseconds::max());
+  metadata_.duration = std::chrono::nanoseconds(0);
   metadata_.relative_file_paths = {strip_parent_path(storage_->get_relative_file_path())};
   rosbag2_storage::FileInformation file_info{};
   file_info.path = strip_parent_path(storage_->get_relative_file_path());
   file_info.starting_time = std::chrono::time_point<std::chrono::high_resolution_clock>(
     std::chrono::nanoseconds::max());
+  file_info.duration = std::chrono::nanoseconds(0);
   file_info.message_count = 0;
   metadata_.files = {file_info};
 }
@@ -83,8 +91,13 @@ void SequentialWriter::open(
   const rosbag2_storage::StorageOptions & storage_options,
   const ConverterOptions & converter_options)
 {
+  // Note. Close and open methods protected with mutex on upper rosbag2_cpp::writer level.
+  if (storage_) {
+    return;  // The writer already opened.
+  }
   base_folder_ = storage_options.uri;
   storage_options_ = storage_options;
+
   if (storage_options_.storage_id.empty()) {
     storage_options_.storage_id = kDefaultStorageID;
   }
@@ -161,8 +174,21 @@ void SequentialWriter::close()
     metadata_io_->write_metadata(base_folder_, metadata_);
   }
 
-  storage_.reset();  // Necessary to ensure that the storage is destroyed before the factory
-  storage_factory_.reset();
+  if (storage_) {
+    storage_.reset();  // Destroy storage before calling WRITE_SPLIT callback to make sure that
+    // bag file was closed before callback call.
+  }
+  if (!metadata_.relative_file_paths.empty()) {
+    // Take the latest file name from metadata in case if it was updated after compression in
+    // derived class
+
+    auto closed_file =
+      (rcpputils::fs::path(base_folder_) / metadata_.relative_file_paths.back()).string();
+    execute_bag_split_callbacks(closed_file, "");
+  }
+
+  topics_names_to_info_.clear();
+  converter_.reset();
 }
 
 void SequentialWriter::create_topic(const rosbag2_storage::TopicMetadata & topic_with_type)
@@ -269,20 +295,38 @@ void SequentialWriter::switch_to_next_storage()
   }
 }
 
-void SequentialWriter::split_bagfile()
+std::string SequentialWriter::split_bagfile_local(bool execute_callbacks)
 {
-  auto info = std::make_shared<bag_events::BagSplitInfo>();
-  info->closed_file = storage_->get_relative_file_path();
+  auto closed_file = storage_->get_relative_file_path();
   switch_to_next_storage();
-  info->opened_file = storage_->get_relative_file_path();
+  auto opened_file = storage_->get_relative_file_path();
 
   metadata_.relative_file_paths.push_back(strip_parent_path(storage_->get_relative_file_path()));
 
   rosbag2_storage::FileInformation file_info{};
+  file_info.starting_time = std::chrono::time_point<std::chrono::high_resolution_clock>(
+    std::chrono::nanoseconds::max());
   file_info.path = strip_parent_path(storage_->get_relative_file_path());
   metadata_.files.push_back(file_info);
 
+  if (execute_callbacks) {
+    execute_bag_split_callbacks(closed_file, opened_file);
+  }
+  return opened_file;
+}
+
+void SequentialWriter::execute_bag_split_callbacks(
+  const std::string & closed_file, const std::string & opened_file)
+{
+  auto info = std::make_shared<bag_events::BagSplitInfo>();
+  info->closed_file = closed_file;
+  info->opened_file = opened_file;
   callback_manager_.execute_callbacks(bag_events::BagEvent::WRITE_SPLIT, info);
+}
+
+void SequentialWriter::split_bagfile()
+{
+  (void)split_bagfile_local();
 }
 
 void SequentialWriter::write(std::shared_ptr<rosbag2_storage::SerializedBagMessage> message)
@@ -305,10 +349,14 @@ void SequentialWriter::write(std::shared_ptr<rosbag2_storage::SerializedBagMessa
   const auto message_timestamp = std::chrono::time_point<std::chrono::high_resolution_clock>(
     std::chrono::nanoseconds(message->time_stamp));
 
-  if (should_split_bagfile(message_timestamp)) {
-    split_bagfile();
+  if (is_first_message_) {
     // Update bagfile starting time
     metadata_.starting_time = message_timestamp;
+    is_first_message_ = false;
+  }
+
+  if (!storage_options_.snapshot_mode && should_split_bagfile(message_timestamp)) {
+    split_bagfile();
     metadata_.files.back().starting_time = message_timestamp;
   }
 
@@ -339,10 +387,13 @@ void SequentialWriter::write(std::shared_ptr<rosbag2_storage::SerializedBagMessa
 bool SequentialWriter::take_snapshot()
 {
   if (!storage_options_.snapshot_mode) {
-    ROSBAG2_CPP_LOG_WARN("SequentialWriter take_snaphot called when snapshot mode is disabled");
+    ROSBAG2_CPP_LOG_WARN("SequentialWriter take_snapshot called when snapshot mode is disabled");
     return false;
   }
+  // Note: Information about start, duration and num messages for the current file in metadata_
+  // will be updated in the write_messages(..), when cache_consumer call it as a callback.
   message_cache_->notify_data_ready();
+  split_bagfile();
   return true;
 }
 
@@ -373,7 +424,7 @@ bool SequentialWriter::should_split_bagfile(
     auto max_duration_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
       std::chrono::seconds(storage_options_.max_bagfile_duration));
     should_split = should_split ||
-      ((current_time - metadata_.starting_time) > max_duration_ns);
+      ((current_time - metadata_.files.back().starting_time) > max_duration_ns);
   }
 
   return should_split;
@@ -408,6 +459,17 @@ void SequentialWriter::write_messages(
     return;
   }
   storage_->write(messages);
+  if (storage_options_.snapshot_mode) {
+    // Update FileInformation about the last file in metadata in case of snapshot mode
+    const auto first_msg_timestamp = std::chrono::time_point<std::chrono::high_resolution_clock>(
+      std::chrono::nanoseconds(messages.front()->time_stamp));
+    const auto last_msg_timestamp = std::chrono::time_point<std::chrono::high_resolution_clock>(
+      std::chrono::nanoseconds(messages.back()->time_stamp));
+    metadata_.files.back().starting_time = first_msg_timestamp;
+    metadata_.files.back().duration = last_msg_timestamp - first_msg_timestamp;
+    metadata_.files.back().message_count = messages.size();
+  }
+  metadata_.message_count += messages.size();
   std::lock_guard<std::mutex> lock(topics_info_mutex_);
   for (const auto & msg : messages) {
     if (topics_names_to_info_.find(msg->topic_name) != topics_names_to_info_.end()) {

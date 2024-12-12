@@ -2,6 +2,31 @@
 Changelog for package rosbag2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.15.13 (2024-11-25)
+--------------------
+* [humble] Make snapshot writing into a new file each time it is triggered (backport `#1842 <https://github.com/ros2/rosbag2/issues/1842>`_) (`#1850 <https://github.com/ros2/rosbag2/issues/1850>`_)
+* [humble] Bugfix for rosbag2_cpp serialization converter (backport `#1814 <https://github.com/ros2/rosbag2/issues/1814>`_) (backport `#1823 <https://github.com/ros2/rosbag2/issues/1823>`_) (`#1824 <https://github.com/ros2/rosbag2/issues/1824>`_)
+* Contributors: mergify[bot]
+
+0.15.12 (2024-07-28)
+--------------------
+* [Humble] Add topics with zero message counts to the SQLiteStorage::get_metadata(). (`#1722 <https://github.com/ros2/rosbag2/issues/1722>`_)
+* [humble] Bugfix for bag_split event callbacks called to early with file compression (backport `#1643 <https://github.com/ros2/rosbag2/issues/1643>`_) (`#1733 <https://github.com/ros2/rosbag2/issues/1733>`_)
+* [humble] rosbag2_cpp: test more than one storage plugin (backport `#1196 <https://github.com/ros2/rosbag2/issues/1196>`_) (`#1721 <https://github.com/ros2/rosbag2/issues/1721>`_)
+* [humble] Remove explicit sqlite3 from code (backport `#1166 <https://github.com/ros2/rosbag2/issues/1166>`_) (`#1723 <https://github.com/ros2/rosbag2/issues/1723>`_)
+* [humble] rosbag2_storage: expose default storage ID as method (backport `#1146 <https://github.com/ros2/rosbag2/issues/1146>`_) (`#1724 <https://github.com/ros2/rosbag2/issues/1724>`_)
+* Contributors: Michael Orlov, mergify[bot]
+
+0.15.11 (2024-05-20)
+--------------------
+
+0.15.10 (2024-05-17)
+--------------------
+* [humble] Bugfix for writer not being able to open again after closing (backport `#1599 <https://github.com/ros2/rosbag2/issues/1599>`_) (`#1653 <https://github.com/ros2/rosbag2/issues/1653>`_)
+* [humble] Add BagSplitInfo service call on bag close (backport `#1422 <https://github.com/ros2/rosbag2/issues/1422>`_) (`#1637 <https://github.com/ros2/rosbag2/issues/1637>`_)
+* Fix split by time. (backport `#1022 <https://github.com/ros2/rosbag2/issues/1022>`_) (`#1616 <https://github.com/ros2/rosbag2/issues/1616>`_)
+* Contributors: Tomoya Fujita, mergify[bot]
+
 0.15.9 (2024-01-24)
 -------------------
 * call cv.wait_until only if necessary. (`#1521 <https://github.com/ros2/rosbag2/issues/1521>`_) (`#1523 <https://github.com/ros2/rosbag2/issues/1523>`_)
