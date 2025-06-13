@@ -1,3 +1,50 @@
+## rosbag2 (jazzy) - 0.26.7-1
+
+The packages in the `rosbag2` repository were released into the `jazzy` distro by running `/home/z572/gits/revyos-ros/venv/bin/bloom-release -r jazzy rosbag2 --override-release-repository-push-url git@github.com:revyos-ros/rosbag2-release.git` on `Fri, 13 Jun 2025 02:47:47 -0000`
+
+These packages were released:
+- `liblz4_vendor`
+- `mcap_vendor`
+- `ros2bag`
+- `rosbag2`
+- `rosbag2_compression`
+- `rosbag2_compression_zstd`
+- `rosbag2_cpp`
+- `rosbag2_examples_cpp`
+- `rosbag2_examples_py`
+- `rosbag2_interfaces`
+- `rosbag2_performance_benchmarking`
+- `rosbag2_performance_benchmarking_msgs`
+- `rosbag2_py`
+- `rosbag2_storage`
+- `rosbag2_storage_default_plugins`
+- `rosbag2_storage_mcap`
+- `rosbag2_storage_sqlite3`
+- `rosbag2_test_common`
+- `rosbag2_test_msgdefs`
+- `rosbag2_tests`
+- `rosbag2_transport`
+- `shared_queues_vendor`
+- `sqlite3_vendor`
+- `zstd_vendor`
+
+Version of package(s) in repository `rosbag2`:
+
+- upstream repository: https://github.com/ros2/rosbag2.git
+- release repository: https://github.com/revyos-ros/rosbag2-release.git
+- rosdistro version: `0.26.7-1`
+- old version: `0.26.6-1`
+- new version: `0.26.7-1`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## rosbag2 (jazzy) - 0.26.6-1
 
 The packages in the `rosbag2` repository were released into the `jazzy` distro by running `/root/venv/bin/bloom-release -r jazzy rosbag2 --override-release-repository-push-url git@github.com:revyos-ros/rosbag2-release.git` on `Wed, 05 Mar 2025 04:09:27 -0000`
